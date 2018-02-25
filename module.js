@@ -8,6 +8,13 @@ const Tests = assert => {
       name: "adds two numbers correctly",
       function: () => {
         const [a, b] = [1, 2];
+        return assert.equal(add(a, b), 3);
+      }
+    },
+    {
+      name: "a negative example",
+      function: () => {
+        const [a, b] = [1, 2];
         return assert.equal(add(a, b), 4);
       }
     }

@@ -3,10 +3,10 @@ const testFiles = ["./module.js"];
 
 for (file of testFiles) {
   const tests = require(file).Tests(assert);
+  let numberOfSucceededTests = 0;
+  let numberOfFailedTests = 0;
+  const failedTest = [];
   for (test of tests) {
-    let numberOfSucceededTests = 0;
-    let numberOfFailedTests = 0;
-    const failedTest = [];
     try {
       test.function();
       ++numberOfSucceededTests;
@@ -18,7 +18,8 @@ for (file of testFiles) {
       };
       failedTest.push(failure);
     }
-    const endMessage = `
+  }
+  const endMessage = `
     Succeeded: ${numberOfSucceededTests}.
     Failed: ${numberOfFailedTests}:
           ${failedTest.map(failure => {
@@ -26,6 +27,5 @@ for (file of testFiles) {
                     ${failure.error}`;
           })}
     `;
-    console.log(endMessage);
-  }
+  console.log(endMessage);
 }
